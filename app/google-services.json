@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "346067290542",
+    "project_id": "aplikasi-diagnosis-feline",
+    "storage_bucket": "aplikasi-diagnosis-feline.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346067290542:android:777c66a79810ef469e203f",
+        "android_client_info": {
+          "package_name": "id.ac.umn.rahmadina.app_diagnosa_feline_skripsi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "346067290542-egrev1p23q1ge7lsckh6iuhuuhpl32c9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.umn.rahmadina.app_diagnosa_feline_skripsi",
+            "certificate_hash": "84aa2a0a7b208b5c6397ff4425428181c36f27a7"
+          }
+        },
+        {
+          "client_id": "346067290542-g8jm0b9ncfrnqtl1lv9hdijvbatr78fn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdeDe-gmPCNg3Bpl44ryz577zpagcZsng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "346067290542-g8jm0b9ncfrnqtl1lv9hdijvbatr78fn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
