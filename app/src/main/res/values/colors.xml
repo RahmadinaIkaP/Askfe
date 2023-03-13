@@ -10,4 +10,6 @@
 
     <color name="pastel_yellow">#FFF49B</color>
     <color name="yellow_orange">#FFC700</color>
+    <color name="grey">#727A83</color>
+    <color name="red">#EB5757</color>
 </resources>
