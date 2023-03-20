@@ -2,9 +2,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.MainActivity">
+
     <item
-        android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="Beranda"
+        android:icon="@drawable/ic_home" />
+
+    <item
+        android:orderInCategory="100"
+        android:title="Riwayat"
+        android:icon="@drawable/ic_history" />
+
+
+    <item
+        android:orderInCategory="100"
+        android:title="Profil"
+        android:icon="@drawable/ic_menu_profile"/>
+
 </menu>
