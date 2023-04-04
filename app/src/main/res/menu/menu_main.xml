@@ -4,17 +4,20 @@
     tools:context="id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.MainActivity">
 
     <item
+        android:id="@+id/homeFragment"
         android:orderInCategory="100"
         android:title="Beranda"
         android:icon="@drawable/ic_home" />
 
     <item
+        android:id="@+id/historyFragment"
         android:orderInCategory="100"
         android:title="Riwayat"
         android:icon="@drawable/ic_history" />
 
 
     <item
+        android:id="@+id/profileFragment"
         android:orderInCategory="100"
         android:title="Profil"
         android:icon="@drawable/ic_menu_profile"/>
