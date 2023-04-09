@@ -9,10 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.datastore.SharedPref
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentSplashScreenBinding
 
+@AndroidEntryPoint
 @SuppressLint("CustomSplashScreen")
 class SplashScreenFragment : Fragment() {
     private var _binding : FragmentSplashScreenBinding? = null

@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentProfileSayaBinding
 
+@AndroidEntryPoint
 class ProfileSayaFragment : Fragment() {
     private var _binding: FragmentProfileSayaBinding? = null
     private val binding get() = _binding!!
