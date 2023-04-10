@@ -5,15 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentLoginBinding
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.authentication.viewmodel.AuthViewModel
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+    private val vmAuth : AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,9 +36,50 @@ class LoginFragment : Fragment() {
             }
 
             btnLogin.setOnClickListener {
-                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                loginAccount()
             }
         }
+    }
+
+    private fun loginAccount() {
+        binding.apply {
+            if (validation()){
+                vmAuth.login(etEmailLogin.text.toString(), etPasswordLogin.text.toString())
+
+                observeLogin()
+            }
+        }
+    }
+
+    private fun observeLogin() {
+        vmAuth.loginObserver().observe(viewLifecycleOwner){ response ->
+            when(response){
+                is ResponseState.Error -> {
+                    TODO()
+                }
+                is ResponseState.Loading -> {
+                    TODO()
+                }
+                is ResponseState.Success -> {
+                    TODO()
+                }
+            }
+        }
+    }
+
+    private fun validation(): Boolean {
+        var isValid = true
+
+        binding.apply {
+            if (etEmailLogin.text.isNullOrEmpty()){
+                isValid = false
+            }
+
+            if (etPasswordLogin.text.isNullOrEmpty()){
+                isValid = false
+            }
+        }
+        return isValid
     }
 
     override fun onDestroyView() {

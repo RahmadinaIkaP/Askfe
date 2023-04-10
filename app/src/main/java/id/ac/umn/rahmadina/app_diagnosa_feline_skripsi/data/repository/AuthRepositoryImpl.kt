@@ -7,8 +7,8 @@ import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.Constant.Companion.U
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
 
 class AuthRepositoryImpl(
-    val auth : FirebaseAuth,
-    val database : FirebaseFirestore
+    private val auth : FirebaseAuth,
+    private val database : FirebaseFirestore
 ) : AuthRepository {
     override fun register(
         email: String,
@@ -30,10 +30,14 @@ class AuthRepositoryImpl(
                             ResponseState.Loading -> {}
                         }
                     }
+                }else{
+
                 }
             }
             .addOnFailureListener {
-
+                response.invoke(
+                    ResponseState.Error(it.localizedMessage!!)
+                )
             }
     }
 
@@ -53,7 +57,19 @@ class AuthRepositoryImpl(
             }
     }
 
-    override fun login() {
-        TODO("Not yet implemented")
+    override fun login(
+        email: String,
+        password: String,
+        response: (ResponseState<String>) -> Unit
+    ) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { result ->
+                if (result.isSuccessful){
+                    response.invoke(ResponseState.Success("Login berhasil!"))
+                }
+            }
+            .addOnFailureListener {
+                response.invoke(ResponseState.Error("Login gagal"))
+            }
     }
 }
