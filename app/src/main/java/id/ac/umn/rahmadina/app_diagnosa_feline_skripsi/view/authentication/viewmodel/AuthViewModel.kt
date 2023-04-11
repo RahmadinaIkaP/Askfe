@@ -31,4 +31,8 @@ class AuthViewModel @Inject constructor(
             loginLiveData.value = it
         }
     }
+
+    fun logout(result: () -> Unit){
+        repository.logout(result)
+    }
 }

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
@@ -38,9 +39,15 @@ class SplashScreenFragment : Fragment() {
     }
 
     private fun startSplashScreen() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
-        }, 2000)
+        sharedPref.getSession.asLiveData().observe(viewLifecycleOwner){
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (it == false){
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
+                }else{
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment)
+                }
+            }, 2000)
+        }
     }
 
     override fun onDestroyView() {

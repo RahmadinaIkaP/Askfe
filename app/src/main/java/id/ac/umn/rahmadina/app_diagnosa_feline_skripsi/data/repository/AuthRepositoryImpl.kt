@@ -31,7 +31,7 @@ class AuthRepositoryImpl(
                         }
                     }
                 }else{
-
+                    ResponseState.Error("Register gagal!")
                 }
             }
             .addOnFailureListener {
@@ -55,6 +55,11 @@ class AuthRepositoryImpl(
                     ResponseState.Error(it.localizedMessage!!)
                 )
             }
+    }
+
+    override fun logout(response: () -> Unit) {
+        auth.signOut()
+        response.invoke()
     }
 
     override fun login(

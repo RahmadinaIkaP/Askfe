@@ -63,7 +63,8 @@
                 android:id="@+id/etEmailLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"/>
+                android:background="@color/white"
+                android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,12 +94,14 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPasswordLogin"
                 android:background="@color/white"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -133,6 +136,18 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBar"
+        app:indicatorColor="@color/yellow_orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.appcompat.widget.AppCompatButton

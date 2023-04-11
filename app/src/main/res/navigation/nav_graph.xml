@@ -41,9 +41,7 @@
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/registerFragment"
-            app:popUpToInclusive="true"/>
+            app:destination="@id/loginFragment"/>
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -78,6 +76,11 @@
         <action
             android:id="@+id/action_profileFragment_to_profileSayaFragment"
             app:destination="@id/profileSayaFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/profileFragment"/>
     </fragment>
     <fragment
         android:id="@+id/profileSayaFragment"

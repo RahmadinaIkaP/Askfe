@@ -9,15 +9,21 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.datastore.SharedPref
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentLoginBinding
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.toast
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.authentication.viewmodel.AuthViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val vmAuth : AuthViewModel by viewModels()
+    private lateinit var sharedPref: SharedPref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +35,8 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        sharedPref = SharedPref(requireContext())
 
         binding.apply {
             btnToRegister.setOnClickListener {
@@ -55,15 +63,25 @@ class LoginFragment : Fragment() {
         vmAuth.loginObserver().observe(viewLifecycleOwner){ response ->
             when(response){
                 is ResponseState.Error -> {
-                    TODO()
+                    binding.progressBar.hide()
+                    toast(response.msg)
                 }
                 is ResponseState.Loading -> {
-                    TODO()
+                    binding.progressBar.show()
                 }
                 is ResponseState.Success -> {
-                    TODO()
+                    binding.progressBar.hide()
+                    saveSession()
+                    toast(response.data)
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 }
             }
+        }
+    }
+
+    private fun saveSession() {
+        CoroutineScope(Dispatchers.IO).launch {
+            sharedPref.session(true)
         }
     }
 
@@ -73,10 +91,10 @@ class LoginFragment : Fragment() {
         binding.apply {
             if (etEmailLogin.text.isNullOrEmpty()){
                 isValid = false
-            }
-
-            if (etPasswordLogin.text.isNullOrEmpty()){
+                toast("Email kosong, silahkan isi terlebih dahulu")
+            }else if (etPasswordLogin.text.isNullOrEmpty()){
                 isValid = false
+                toast("Password kosong, silahkan isi terlebih dahulu")
             }
         }
         return isValid
