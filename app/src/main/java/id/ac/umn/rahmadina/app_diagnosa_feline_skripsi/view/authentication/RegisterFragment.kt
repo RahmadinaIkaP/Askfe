@@ -69,7 +69,7 @@ class RegisterFragment : Fragment() {
 
         datePicker.show(parentFragmentManager, "datePicker")
         datePicker.addOnPositiveButtonClickListener {
-            val dateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
 
             binding.etTtlReg.setText(dateFormat.format(Date(it)))
         }
