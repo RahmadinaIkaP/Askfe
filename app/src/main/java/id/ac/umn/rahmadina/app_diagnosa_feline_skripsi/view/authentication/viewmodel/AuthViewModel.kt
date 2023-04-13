@@ -14,9 +14,11 @@ class AuthViewModel @Inject constructor(
 ) : ViewModel() {
     private var registerLiveData : MutableLiveData<ResponseState<String>> = MutableLiveData()
     private var loginLiveData : MutableLiveData<ResponseState<String>> = MutableLiveData()
+    private var getUserLiveData : MutableLiveData<ResponseState<List<User>>> = MutableLiveData()
 
     fun registerObserver() : MutableLiveData<ResponseState<String>> = registerLiveData
     fun loginObserver() : MutableLiveData<ResponseState<String>> = loginLiveData
+    fun getUserObserver() : MutableLiveData<ResponseState<List<User>>> = getUserLiveData
 
     fun register(email : String, password : String, user: User){
         registerLiveData.value = ResponseState.Loading
@@ -34,5 +36,12 @@ class AuthViewModel @Inject constructor(
 
     fun logout(result: () -> Unit){
         repository.logout(result)
+    }
+
+    fun getUser(email: String){
+        getUserLiveData.value = ResponseState.Loading
+        repository.getUser(email){
+            getUserLiveData.value = it
+        }
     }
 }

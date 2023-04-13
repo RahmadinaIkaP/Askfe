@@ -2,6 +2,7 @@ package id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.repository
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.model.User
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.Constant.Companion.USER
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
@@ -60,6 +61,30 @@ class AuthRepositoryImpl(
     override fun logout(response: () -> Unit) {
         auth.signOut()
         response.invoke()
+    }
+
+    override fun getUser(email: String, response: (ResponseState<List<User>>) -> Unit) {
+        database.collection(USER)
+            .whereEqualTo("email",email)
+            .orderBy("createdAt", Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener {
+                val user = arrayListOf<User>()
+                for (document in it){
+                    val obj = document.toObject(User::class.java)
+                    user.add(obj)
+                }
+                response.invoke(
+                    ResponseState.Success(user)
+                )
+            }
+            .addOnFailureListener {
+                response.invoke(
+                    ResponseState.Error(
+                        it.localizedMessage!!
+                    )
+                )
+            }
     }
 
     override fun login(

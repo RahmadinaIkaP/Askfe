@@ -11,5 +11,7 @@ data class User(
     var gender : String,
     var bornDate : String,
     var imageUrl : String? = null,
-    var password : String
+    var password : String,
+    var createAt : String,
+    var updtaeAt : String
 ) : Parcelable

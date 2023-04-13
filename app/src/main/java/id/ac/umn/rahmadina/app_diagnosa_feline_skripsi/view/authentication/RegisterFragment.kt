@@ -18,6 +18,8 @@ import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.model.User
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.isValidEmail
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.toast
+import kotlinx.datetime.Clock
+import java.security.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -88,7 +90,9 @@ class RegisterFragment : Fragment() {
                         gender = spinnerJkReg.text.toString(),
                         bornDate = etTtlReg.text.toString(),
                         imageUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-                        password = etPasswordReg.text.toString()
+                        password = etPasswordReg.text.toString(),
+                        createAt = Clock.System.now().toString(),
+                        updtaeAt = Clock.System.now().toString()
                     )
                 )
 

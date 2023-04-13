@@ -8,4 +8,5 @@ interface AuthRepository {
     fun login(email: String, password: String, response: (ResponseState<String>) -> Unit)
     fun addUserToDatabase(user: User, response: (ResponseState<String>) -> Unit)
     fun logout(response: () -> Unit)
+    fun getUser(email : String, response: (ResponseState<List<User>>) -> Unit)
 }
