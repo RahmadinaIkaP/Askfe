@@ -2,12 +2,13 @@ package id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.di
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.repository.AuthRepository
-import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.repository.AuthRepositoryImpl
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.repository.*
 import javax.inject.Singleton
 
 @Module
@@ -18,4 +19,16 @@ object RepositoryModule {
     @Singleton
     fun provideAuthRepository(auth : FirebaseAuth, database : FirebaseFirestore) :
             AuthRepository = AuthRepositoryImpl(auth, database)
+
+    @Provides
+    @Singleton
+    fun provideProfileRepository(
+        database: FirebaseFirestore,
+        storageReference: StorageReference,
+    ) :
+            ProfileRepository = ProfileRepositoryImpl(storageReference,database)
+
+    @Provides
+    @Singleton
+    fun provideDiseaseRepository(database: FirebaseFirestore) : DiseaseRepository = DiseaseRepositoryImpl(database)
 }

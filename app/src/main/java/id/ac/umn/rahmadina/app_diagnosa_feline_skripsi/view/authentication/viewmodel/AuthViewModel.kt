@@ -38,9 +38,9 @@ class AuthViewModel @Inject constructor(
         repository.logout(result)
     }
 
-    fun getUser(email: String){
+    fun getUser(){
         getUserLiveData.value = ResponseState.Loading
-        repository.getUser(email){
+        repository.getUser(){
             getUserLiveData.value = it
         }
     }

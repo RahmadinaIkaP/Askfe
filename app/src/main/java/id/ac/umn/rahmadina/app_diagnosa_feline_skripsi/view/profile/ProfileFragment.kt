@@ -1,16 +1,20 @@
 package id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.profile
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.datastore.SharedPref
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentProfileBinding
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.toast
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.authentication.viewmodel.AuthViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -42,9 +46,35 @@ class ProfileFragment : Fragment() {
                 findNavController().navigate(R.id.action_profileFragment_to_profileSayaFragment)
             }
 
+            setProfile()
+
             btnLogout.setOnClickListener {
                 clearSession()
                 logout()
+            }
+        }
+    }
+
+    private fun setProfile() {
+        vmAuth.getUser()
+        vmAuth.getUserObserver().observe(viewLifecycleOwner){ response ->
+            when(response){
+                is ResponseState.Error -> {
+                    Log.e("LoginFragment","error get data")}
+                is ResponseState.Loading -> {
+                    Log.d("LoginFragment", "loading...")}
+                is ResponseState.Success -> {
+                    Log.d("LoginFragment", response.data[0].toString())
+
+                    binding.apply {
+                        Glide.with(requireView())
+                            .load(response.data[0].imageUrl)
+                            .into(circleImageView2)
+
+                        tvNamaUser.text = response.data[0].name
+                        tvEmailUser.text = response.data[0].email
+                    }
+                }
             }
         }
     }

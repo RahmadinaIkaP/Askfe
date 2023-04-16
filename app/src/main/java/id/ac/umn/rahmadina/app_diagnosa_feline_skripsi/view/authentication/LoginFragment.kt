@@ -1,6 +1,7 @@
 package id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.authentication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -71,17 +72,31 @@ class LoginFragment : Fragment() {
                 }
                 is ResponseState.Success -> {
                     binding.progressBar.hide()
-                    saveSession()
+                    getUser()
                     toast(response.data)
+                }
+            }
+        }
+    }
+
+    private fun getUser() {
+        vmAuth.getUser()
+        vmAuth.getUserObserver().observe(viewLifecycleOwner){ response ->
+            when(response){
+                is ResponseState.Error -> {Log.e("LoginFragment","error get data")}
+                is ResponseState.Loading -> {Log.d("LoginFragment", "loading...")}
+                is ResponseState.Success -> {
+                    Log.d("LoginFragment", response.data[0].toString())
+                    saveSession(response.data[0].id, response.data[0].name, response.data[0].email)
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 }
             }
         }
     }
 
-    private fun saveSession() {
+    private fun saveSession(uid : String, name : String, email : String) {
         CoroutineScope(Dispatchers.IO).launch {
-            sharedPref.session(true)
+            sharedPref.session(true, uid, name, email)
         }
     }
 
