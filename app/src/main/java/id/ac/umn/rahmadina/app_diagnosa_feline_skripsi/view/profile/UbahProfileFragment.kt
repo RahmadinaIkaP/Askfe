@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentUbahProfileBinding
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.profile.viewmodel.ProfileViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -19,6 +21,7 @@ import java.util.*
 class UbahProfileFragment : Fragment() {
     private var _binding : FragmentUbahProfileBinding? = null
     private val binding get() = _binding!!
+    private val vmProfile : ProfileViewModel by viewModels()
 
     companion object {
         const val REQUEST_CODE_PERMISSIONS = 101

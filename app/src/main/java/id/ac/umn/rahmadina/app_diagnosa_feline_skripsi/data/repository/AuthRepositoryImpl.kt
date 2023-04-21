@@ -101,7 +101,6 @@ class AuthRepositoryImpl(
                     val user = document.toObject(User::class.java)
                     users.add(user)
                 }
-
                 response.invoke(
                     ResponseState.Success(users)
                 )

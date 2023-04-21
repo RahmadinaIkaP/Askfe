@@ -54,7 +54,6 @@ class LoginFragment : Fragment() {
         binding.apply {
             if (validation()){
                 vmAuth.login(etEmailLogin.text.toString(), etPasswordLogin.text.toString())
-
                 observeLogin()
             }
         }
@@ -87,16 +86,16 @@ class LoginFragment : Fragment() {
                 is ResponseState.Loading -> {Log.d("LoginFragment", "loading...")}
                 is ResponseState.Success -> {
                     Log.d("LoginFragment", response.data[0].toString())
-                    saveSession(response.data[0].id, response.data[0].name, response.data[0].email)
+                    saveSession(response.data[0].id, response.data[0].name, response.data[0].email, response.data[0].password)
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 }
             }
         }
     }
 
-    private fun saveSession(uid : String, name : String, email : String) {
+    private fun saveSession(uid : String, name : String, email : String, pass : String) {
         CoroutineScope(Dispatchers.IO).launch {
-            sharedPref.session(true, uid, name, email)
+            sharedPref.session(true, uid, name, email, pass)
         }
     }
 

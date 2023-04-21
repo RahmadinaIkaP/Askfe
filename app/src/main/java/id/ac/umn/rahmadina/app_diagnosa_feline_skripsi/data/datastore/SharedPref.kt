@@ -17,13 +17,21 @@ class SharedPref(private val context: Context) {
     private val uid = stringPreferencesKey("uid")
     private val name = stringPreferencesKey("name")
     private val email = stringPreferencesKey("email")
+    private val pass = stringPreferencesKey("password")
 
-    suspend fun session(login : Boolean, id : String, names : String, emails : String){
+    suspend fun session(login : Boolean, id : String, names : String, emails : String, password : String){
         context.dataStore.edit {
             it[isLogin] = login
             it[uid] = id
             it[name] = names
             it[email] = emails
+            it[pass] = password
+        }
+    }
+
+    suspend fun updatedPass(password: String){
+        context.dataStore.edit {
+            it[pass] = password
         }
     }
 
@@ -45,6 +53,11 @@ class SharedPref(private val context: Context) {
     val getEmail : Flow<String> = context.dataStore.data
         .map {
             it[email] ?: "undefined"
+        }
+
+    val getPassword : Flow<String> = context.dataStore.data
+        .map {
+            it[pass] ?: "undefined"
         }
 
     suspend fun removeSession(){

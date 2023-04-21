@@ -7,4 +7,6 @@ import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
 interface ProfileRepository {
     suspend fun updateImgProfile(fileUri : Uri, response : (ResponseState<Uri>) -> Unit)
     fun editProfile(user: User, response: (ResponseState<String>) -> Unit)
+    fun updatePassword(password : String, response: (ResponseState<String>) -> Unit)
+    fun updatePasswordDatabase(password: String, response: (ResponseState<String>) -> Unit)
 }

@@ -40,7 +40,7 @@ class AuthViewModel @Inject constructor(
 
     fun getUser(){
         getUserLiveData.value = ResponseState.Loading
-        repository.getUser(){
+        repository.getUser{
             getUserLiveData.value = it
         }
     }
