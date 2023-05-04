@@ -12,7 +12,7 @@ data class User(
     var name : String = "",
     var gender : String = "",
     var bornDate : String = "",
-    var imageUrl : String? = null,
+    var imageUrl : String? = "",
     var password : String = "",
     @ServerTimestamp
     var createAt : Date? = null,

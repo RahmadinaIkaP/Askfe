@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.model.User
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.repository.ProfileRepository
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
 import kotlinx.coroutines.launch
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,17 +37,17 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun updateProfile(user : User){
+    fun updateProfile(email : String, name : String, gender : String, ttl : String, img : String ){
         updateProfileLiveData.value = ResponseState.Loading
-        repository.editProfile(user){
+        repository.editProfile(email, name, gender, ttl, img){
             updateProfileLiveData.value = it
         }
     }
 
-    fun uploadImgProfile(fileUri : Uri, result : (ResponseState<Uri>) -> Unit){
+    fun uploadImgProfile(fileUri: Uri, file: File,result: (ResponseState<Uri>) -> Unit){
         result.invoke(ResponseState.Loading)
         viewModelScope.launch {
-            repository.updateImgProfile(fileUri, result)
+            repository.updateImgProfile(fileUri, file ,result)
         }
     }
 }

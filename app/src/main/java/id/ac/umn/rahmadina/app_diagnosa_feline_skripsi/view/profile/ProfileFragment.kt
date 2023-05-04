@@ -46,6 +46,10 @@ class ProfileFragment : Fragment() {
                 findNavController().navigate(R.id.action_profileFragment_to_profileSayaFragment)
             }
 
+            navigateToAboutApp.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFragment_to_aboutAppFragment)
+            }
+
             setProfile()
 
             btnLogout.setOnClickListener {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">App-Diagnosa-Feline-Skripsi</string>
+    <string name="app_name">AskFe!</string>
     <string name="action_settings" translatable="false">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label" translatable="false">First Fragment</string>
@@ -22,7 +22,7 @@
     <string name="jenis_kelamin" translatable="false">Jenis Kelamin</string>
     <string name="tanggal_lahir" translatable="false">Tanggal Lahir</string>
     <string name="konfirmasi_password" translatable="false">Konfirmasi Password</string>
-    
+
     <string-array name="jenis_kelamin">
         <item>Laki-laki</item>
         <item>Perempuan</item>

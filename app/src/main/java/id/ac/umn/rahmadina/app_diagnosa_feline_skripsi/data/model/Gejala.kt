@@ -4,10 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Penyakit(
+data class Gejala(
     val id : String? = "",
-    val nama_penyakit : String? = "",
-    val deskripsi : String? = "",
-    val solusi : String? = "",
-    val image : String? = ""
+    val nama_gejala : String? = "",
+    val pertanyaan : String? = ""
 ) : Parcelable

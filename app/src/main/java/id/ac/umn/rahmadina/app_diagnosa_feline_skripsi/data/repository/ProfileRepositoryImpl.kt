@@ -12,14 +12,15 @@ import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.io.File
 
 class ProfileRepositoryImpl(
     private val auth : FirebaseAuth,
-    private val storageRef : StorageReference,
     private val database : FirebaseFirestore
 ) : ProfileRepository {
 
-    override suspend fun updateImgProfile(fileUri: Uri, response: (ResponseState<Uri>) -> Unit) {
+    override suspend fun updateImgProfile(fileUri: Uri, file : File,response: (ResponseState<Uri>) -> Unit) {
+        val storageRef = FirebaseStorage.getInstance().getReference("app/$file")
         try {
             val uri : Uri = withContext(Dispatchers.IO){
                 storageRef
@@ -37,10 +38,23 @@ class ProfileRepositoryImpl(
         }
     }
 
-    override fun editProfile(user: User, response: (ResponseState<String>) -> Unit) {
+    override fun editProfile(
+        email : String,
+        name : String,
+        gender : String,
+        ttl : String,
+        img : String,
+        response: (ResponseState<String>) -> Unit
+    ) {
         auth.currentUser?.let { user ->
             database.collection(USER).document(user.uid)
-                .set(user)
+                .update(
+                    "email", email,
+                    "name", name,
+                    "gender", gender,
+                    "bornDate", ttl,
+                    "imageUrl", img
+                )
                 .addOnSuccessListener {
                     response.invoke(ResponseState.Success("Ubah profil berhasil!"))
                 }

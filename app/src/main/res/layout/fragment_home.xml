@@ -60,9 +60,9 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnMulaiDiagnosa"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="90dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="24dp"
             android:text="Mulai Diagnosa"
             android:textAllCaps="false"
@@ -76,7 +76,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPenyakitFeline"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="90dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
@@ -89,21 +89,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnMulaiDiagnosa" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAboutApp"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="24dp"
-            android:backgroundTint="@color/blue_soft"
-            android:text="Tentang Aplikasi"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            app:icon="@drawable/ic_info"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnPenyakitFeline" />
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/btnAboutApp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="75dp"-->
+<!--            android:layout_marginStart="24dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginEnd="24dp"-->
+<!--            android:backgroundTint="@color/blue_soft"-->
+<!--            android:text="Tentang Aplikasi"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textSize="18sp"-->
+<!--            app:icon="@drawable/ic_info"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/btnPenyakitFeline" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

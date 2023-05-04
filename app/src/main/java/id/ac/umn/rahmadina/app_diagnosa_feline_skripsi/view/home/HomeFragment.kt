@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.datastore.SharedPref
@@ -38,15 +39,11 @@ class HomeFragment : Fragment() {
 
         binding.apply {
             btnMulaiDiagnosa.setOnClickListener {
-
+                findNavController().navigate(R.id.action_homeFragment_to_konfirmasiDiagnosisFragment)
             }
 
-            btnAboutApp.apply {
-
-            }
-
-            btnAboutApp.setOnClickListener {
-
+            btnPenyakitFeline.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_infoPenyakitFragment)
             }
         }
     }

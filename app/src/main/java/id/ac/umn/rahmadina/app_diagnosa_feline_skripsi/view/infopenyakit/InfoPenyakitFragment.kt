@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
@@ -45,7 +46,7 @@ class InfoPenyakitFragment : Fragment(), PenyakitAdapter.PenyakitInterface {
                 }
                 is ResponseState.Success -> {
                     binding.progressBar.hide()
-                    showDisease(response.data)
+                    showDisease(response.data.toList())
                 }
             }
         }
@@ -67,6 +68,7 @@ class InfoPenyakitFragment : Fragment(), PenyakitAdapter.PenyakitInterface {
     }
 
     override fun onItemClick(penyakit: Penyakit) {
-        TODO("Not yet implemented")
+        val action = InfoPenyakitFragmentDirections.actionInfoPenyakitFragmentToDetailInfoPenyakitFragment(penyakit)
+        findNavController().navigate(action)
     }
 }

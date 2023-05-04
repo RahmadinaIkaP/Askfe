@@ -22,7 +22,7 @@ object AppModule {
     @Singleton
     fun provideFirebaseAuth() : FirebaseAuth = FirebaseAuth.getInstance()
 
-    @Provides
-    @Singleton
-    fun provideFirebaseStorage() : StorageReference = FirebaseStorage.getInstance().getReference("app")
+//    @Provides
+//    @Singleton
+//    fun provideFirebaseStorage() : StorageReference = FirebaseStorage.getInstance().getReference("app/")
 }
