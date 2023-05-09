@@ -1,4 +1,4 @@
-package id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.aboutapp
+package id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.history
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,20 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
-import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentAboutAppBinding
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentDetailHistoryBinding
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentDetailInfoPenyakitBinding
 
-@AndroidEntryPoint
-class AboutAppFragment : Fragment() {
-    private var _binding : FragmentAboutAppBinding? = null
+class DetailHistoryFragment : Fragment() {
+    private var _binding : FragmentDetailHistoryBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAboutAppBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -39,7 +39,7 @@ class DetailInfoPenyakitFragment : Fragment() {
 
         binding.webView.apply {
             webViewClient = WebViewClient()
-            data.deskripsi?.let { loadUrl(it) }
+            data.urlArtikel?.let { loadUrl(it) }
         }
     }
 

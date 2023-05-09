@@ -73,7 +73,11 @@
         android:id="@+id/historyFragment"
         android:name="id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.history.HistoryFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_detailHistoryFragment"
+            app:destination="@id/detailHistoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.profile.ProfileFragment"
@@ -126,6 +130,11 @@
         <action
             android:id="@+id/action_konfirmasiDiagnosisFragment_to_formCatNameFragment"
             app:destination="@id/formCatNameFragment" />
+        <action
+            android:id="@+id/action_konfirmasiDiagnosisFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/konfirmasiDiagnosisFragment"/>
     </fragment>
     <fragment
         android:id="@+id/formCatNameFragment"
@@ -170,4 +179,9 @@
             android:name="argsPenyakit"
             app:argType="id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.model.Penyakit" />
     </fragment>
+    <fragment
+        android:id="@+id/detailHistoryFragment"
+        android:name="id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.history.DetailHistoryFragment"
+        android:label="fragment_detail_history"
+        tools:layout="@layout/fragment_detail_history" />
 </navigation>

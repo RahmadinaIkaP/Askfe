@@ -34,6 +34,10 @@ class InfoPenyakitFragment : Fragment(), PenyakitAdapter.PenyakitInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.imageView2.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         vmDisease.getDiseaseInfo()
         vmDisease.diseaseObserver().observe(viewLifecycleOwner){ response ->
             when(response){

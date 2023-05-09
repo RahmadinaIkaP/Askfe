@@ -41,6 +41,7 @@ class UbahPasswordFragment : Fragment() {
         sharedPref = SharedPref(requireContext())
 
         binding.apply {
+
             imageView2.setOnClickListener {
                 findNavController().navigateUp()
             }

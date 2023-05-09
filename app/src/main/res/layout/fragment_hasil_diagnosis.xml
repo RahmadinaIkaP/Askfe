@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,161 +7,254 @@
     android:layout_gravity="center_horizontal"
     tools:context=".view.diagnosis.HasilDiagnosisFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutHasil"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/button_bordered_yellow"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_alignParentTop="true">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Hasil Diagnosis"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout6"
-            android:orientation="vertical"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView2">
+            android:paddingBottom="16dp">
 
-            <TextView
-                android:id="@+id/tvlblGejala"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutHasil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:paddingBottom="30dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:background="@drawable/button_bordered_yellow"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentTop="true">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Hasil Diagnosis"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout6"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView2">
+
+                    <TextView
+                        android:id="@+id/tvlblGejala"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Gejala yang dipilih: "
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+                    <TextView
+                        android:id="@+id/tvGejalaTerpilih"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:layout_marginStart="2dp"
+                        android:text="Gejala"
+                        android:textColor="@color/blue_soft"
+                        android:textSize="17sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvLblPenyakit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Kucing anda terkena penyakit:"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+                <TextView
+                    android:id="@+id/tvHasilPenyakit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Penyakit"
+                    android:textColor="@color/blue_soft"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLblPenyakit" />
+
+                <TextView
+                    android:id="@+id/tvLblNilaiPersen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Dengan persentase sebesar:"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHasilPenyakit" />
+
+                <TextView
+                    android:id="@+id/tvNilaiPersen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Nilai persentase"
+                    android:textColor="@color/blue_soft"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLblNilaiPersen" />
+
+                <TextView
+                    android:id="@+id/tvLblPenjelasan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Penjelasan penyakit:"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNilaiPersen" />
+
+                <TextView
+                    android:id="@+id/tvPenjelasan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Penjelasan"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:justificationMode="inter_word"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLblPenjelasan" />
+
+                <TextView
+                    android:id="@+id/tvLblSolusi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Solusi yang disarankan:"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPenjelasan" />
+
+                <TextView
+                    android:id="@+id/tvSolusi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Solusi"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:justificationMode="inter_word"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLblSolusi" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/kocheng" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDiagnoseAgain"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="24dp"
+                android:layout_below="@+id/layoutHasil"
+                android:backgroundTint="@color/yellow_orange"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Gejala yang dipilih: "
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+                android:text="Diagnosa Ulang"/>
 
-            <TextView
-                android:id="@+id/tvGejalaTerpilih"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBackToHome"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/btnDiagnoseAgain"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_marginStart="2dp"
-                android:text="Gejala"
-                android:textColor="@color/blue_soft"
-                android:textSize="17sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+                android:backgroundTint="@color/blue_soft"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Halaman Utama" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tvLblPenyakit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Kucing anda terkena penyakit:"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+    </ScrollView>
 
-        <TextView
-            android:id="@+id/tvHasilPenyakit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Penyakit"
-            android:textColor="@color/blue_soft"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLblPenyakit" />
-
-        <TextView
-            android:id="@+id/tvLblNilaiPersen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Dengan persentase sebesar:"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHasilPenyakit" />
-
-        <TextView
-            android:id="@+id/tvNilaiPersen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Nilai persentase"
-            android:textColor="@color/blue_soft"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLblNilaiPersen" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBar"
+        app:indicatorColor="@color/yellow_orange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/kocheng" />
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnDiagnoseAgain"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="24dp"
-        android:layout_below="@+id/layoutHasil"
-        android:backgroundTint="@color/yellow_orange"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Diagnosa Ulang"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnBackToHome"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@+id/btnDiagnoseAgain"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/blue_soft"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Halaman Utama" />
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,15 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.collection.arrayMapOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.datastore.SharedPref
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.model.*
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentHasilDiagnosisBinding
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.diagnosis.viewmodel.DiagnosisViewModel
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.infopenyakit.viewmodel.DiseaseViewModel
 import java.text.DecimalFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class HasilDiagnosisFragment : Fragment() {
@@ -26,6 +30,7 @@ class HasilDiagnosisFragment : Fragment() {
     private val vmDiagnosis : DiagnosisViewModel by viewModels()
     private val vmPenyakit : DiseaseViewModel by viewModels()
     private val hasilCfTotal : ArrayList<CfTotal> = arrayListOf()
+    private lateinit var sharedPref: SharedPref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +43,7 @@ class HasilDiagnosisFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedPref = SharedPref(requireContext())
         val dataHasil = arguments?.getParcelableArrayList<InputCfUser>("hasilUser") as ArrayList<InputCfUser>
         val dataGejala = arguments?.getStringArrayList("gejala")
 
@@ -125,12 +131,12 @@ class HasilDiagnosisFragment : Fragment() {
         var key3 = 0
         var key4 = 0
         var key5 = 0
-        Log.d("Hasil", hasilCfTotal.toString())
-        val listF01 = arrayMapOf<Int,Double>()
-        val listF02 = arrayMapOf<Int,Double>()
-        val listF03 = arrayMapOf<Int,Double>()
-        val listF04 = arrayMapOf<Int,Double>()
-        val listF05 = arrayMapOf<Int,Double>()
+
+        val listF01 = arrayMapOf<Int,Double>() // list untuk cf hipotesa f01
+        val listF02 = arrayMapOf<Int,Double>() // list untuk cf hipotesa f02
+        val listF03 = arrayMapOf<Int,Double>() // list untuk cf hipotesa f03
+        val listF04 = arrayMapOf<Int,Double>() // list untuk cf hipotesa f04
+        val listF05 = arrayMapOf<Int,Double>() // list untuk cf hipotesa f05
 
         var cfComb1 = 0.0 // cf untuk f01
         var cfComb2 = 0.0 // cf untuk f02
@@ -206,6 +212,7 @@ class HasilDiagnosisFragment : Fragment() {
         diagnosaFinal(listHasilCf)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun diagnosaFinal(listHasilCf: ArrayList<Hasil>) {
         val df = DecimalFormat("#.##")
 
@@ -213,45 +220,39 @@ class HasilDiagnosisFragment : Fragment() {
         val nCfPersen = df.format(cfTertinggi.hasilCf!! * 100)
         Log.d("Hasil-Final", cfTertinggi.toString())
 
-        val dataGejala = arguments?.getStringArrayList("gejala")
-        dataGejala?.let { vmDiagnosis.getGejalaTerpilih(it) }
-        vmDiagnosis.getGejalaObserver().observe(viewLifecycleOwner){ response ->
-            when(response){
-                is ResponseState.Error -> {
-
-                }
-                is ResponseState.Loading -> {
-
-                }
-                is ResponseState.Success -> {
-                    for (i in response.data){
-                        binding.tvGejalaTerpilih.text = "$i. ${i.nama_gejala}\n"
-                    }
-                }
-            }
-        }
-
         getPenyakit(cfTertinggi, nCfPersen)
+
     }
 
     @SuppressLint("SetTextI18n")
     private fun getPenyakit(penyakit: Hasil, nCfPersen: String) {
+        val namaKucing = arguments?.getString("nKucing")
         vmPenyakit.getDiseaseInfo()
         vmPenyakit.diseaseObserver().observe(viewLifecycleOwner){ response ->
             when(response){
                 is ResponseState.Error -> {
-
+                    binding.progressBar.hide()
                 }
                 is ResponseState.Loading -> {
-
+                    binding.progressBar.show()
                 }
                 is ResponseState.Success -> {
+                    binding.progressBar.hide()
                     response.data.forEach {
                         if (it.id == penyakit.id_penyakit){
                             binding.apply {
+                                var builder = StringBuilder()
+
+                                tvLblPenyakit.text = "Kucing anda yang bernama $namaKucing kemungkinan terkena penyakit:"
                                 tvHasilPenyakit.text = it.nama_penyakit
                                 tvNilaiPersen.text = "$nCfPersen%"
+                                tvPenjelasan.text = it.deskripsi
+                                for (solusi in it.solusi){
+                                    builder.append(solusi).append("\n")
+                                }
+                                tvSolusi.text = builder.toString()
                             }
+                            addToRiwayat(it.nama_penyakit, nCfPersen, it.deskripsi, it.solusi, namaKucing)
                         }
                     }
                 }
@@ -259,11 +260,39 @@ class HasilDiagnosisFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun getGejalaName() {
+    private fun addToRiwayat(
+        namaPenyakit: String?,
+        nCfPersen: String,
+        deskripsi: String?,
+        solusi: List<String?>,
+        namaKucing: String?
+    ) {
+        sharedPref.getUid.asLiveData().observe(viewLifecycleOwner){ uid ->
+            vmDiagnosis.addToHistory(History(
+                id = "",
+                idUser = uid,
+                namaKucing = namaKucing,
+                hdPenyakit = namaPenyakit,
+                hdCfPersen = nCfPersen,
+                hdDeskripsi = deskripsi,
+                hdSolusi = solusi,
+                tglKonsultasi = Date()
+            ))
+        }
+        vmDiagnosis.addHistoryObserver().observe(viewLifecycleOwner){
+            when(it){
+                is ResponseState.Error -> {
+                    Log.e("Tambah Data", it.msg)
+                }
+                is ResponseState.Loading -> {
 
+                }
+                is ResponseState.Success -> {
+                    Log.d("Tambah Data", it.data)
+                }
+            }
+        }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

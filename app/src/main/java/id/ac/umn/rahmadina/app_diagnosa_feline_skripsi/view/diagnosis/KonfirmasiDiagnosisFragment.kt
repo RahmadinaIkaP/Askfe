@@ -32,7 +32,7 @@ class KonfirmasiDiagnosisFragment : Fragment() {
             }
 
             btnBackToHome.setOnClickListener {
-                findNavController().navigateUp()
+                findNavController().navigate(R.id.action_konfirmasiDiagnosisFragment_to_homeFragment)
             }
         }
     }

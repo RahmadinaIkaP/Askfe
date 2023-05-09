@@ -27,26 +27,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/btnBack"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_back"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="3dp"-->
-<!--                    android:fontFamily="@font/poppins_semibold"-->
-<!--                    android:text="Profil Saya"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="17sp"-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/btnBack"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:src="@drawable/ic_back"-->
 <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintStart_toEndOf="@+id/btnBack"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
 <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Pertanyaan untuk diagnosis"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -68,19 +67,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-        <TextView
-            android:id="@+id/text_pertanyaan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:gravity="center"
-            android:text="Gejala"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
         <LinearLayout
+            android:id="@+id/layoutPertanyaan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
@@ -88,6 +76,18 @@
             android:layout_marginRight="24dp"
             android:layout_marginBottom="12dp"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_pertanyaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="Gejala"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <RadioGroup
                 android:id="@+id/rg"
@@ -150,20 +150,20 @@
 
             </RadioGroup>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_lanjut"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="24dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Lanjut"
-                android:textColor="#FFF"
-                android:textSize="18sp"
-                android:textAllCaps="false"/>
-
         </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_lanjut"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="24dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Lanjut"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            android:textAllCaps="false"/>
 
     </LinearLayout>
 

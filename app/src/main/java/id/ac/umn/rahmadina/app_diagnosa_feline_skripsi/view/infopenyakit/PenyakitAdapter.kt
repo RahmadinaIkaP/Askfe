@@ -26,7 +26,6 @@ class PenyakitAdapter(private val onClick : PenyakitInterface) : RecyclerView.Ad
 
     inner class ViewHolder(private val binding : ItemPenyakitBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
             fun bind(penyakit: Penyakit){
                 binding.apply {
                     Glide.with(itemView)

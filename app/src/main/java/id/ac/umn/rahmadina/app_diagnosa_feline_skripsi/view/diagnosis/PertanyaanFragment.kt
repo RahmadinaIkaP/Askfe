@@ -41,7 +41,6 @@ class PertanyaanFragment : Fragment() {
 
         getGejala();
         binding.btnLanjut.setOnClickListener {
-
                setQuestion()
         }
     }
@@ -82,6 +81,7 @@ class PertanyaanFragment : Fragment() {
             bundle.putParcelableArrayList("hasilUser", gejalaTerpilih as ArrayList<InputCfUser>)
             bundle.putStringArrayList("gejala", listGejala)
 
+            toast("Mulai perhitungan")
             findNavController().navigate(R.id.action_pertanyaanFragment_to_hasilDiagnosisFragment, bundle)
 
         }else{
@@ -92,6 +92,7 @@ class PertanyaanFragment : Fragment() {
             }
 
             if (idx == list.lastIndex){
+                binding.layoutPertanyaan.visibility = View.GONE
                 binding.btnLanjut.text = "Hasil diagnosis"
             }
         }
@@ -111,14 +112,19 @@ class PertanyaanFragment : Fragment() {
     }
 
     private fun setQuestion(){
-        val selected = binding.rg.checkedRadioButtonId
-        if (selected == -1){
-            toast("Bang pilih dulu bang")
+        if (binding.layoutPertanyaan.visibility == View.VISIBLE){
+            val selected = binding.rg.checkedRadioButtonId
+            if (selected == -1){
+                toast("Pilih jawaban terlebih dahulu")
+            }else{
+                showQuestion(++counter)
+                hasil.add(
+                    InputCfUser(list[counter-1].id, getCfUserVal(resources.getResourceEntryName(selected)))
+                )
+                Log.d("Counter", "counter: $counter")
+            }
         }else{
             showQuestion(++counter)
-            hasil.add(
-                InputCfUser(list[counter-1].id, getCfUserVal(resources.getResourceEntryName(selected)))
-            )
             Log.d("Counter", "counter: $counter")
         }
     }

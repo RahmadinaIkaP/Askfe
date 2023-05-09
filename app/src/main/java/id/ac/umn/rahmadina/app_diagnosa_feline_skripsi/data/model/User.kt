@@ -17,5 +17,5 @@ data class User(
     @ServerTimestamp
     var createAt : Date? = null,
     @ServerTimestamp
-    var updtaeAt : Date? = null
+    var updateAt : Date? = null
 ) : Parcelable

@@ -15,13 +15,15 @@ class DiagnosisViewModel @Inject constructor(
     private val repository: DiseaseRepository
 ) : ViewModel() {
     private var getGejalaLiveData : MutableLiveData<ResponseState<List<Gejala>>> = MutableLiveData()
-    private var getRulesLiveData : MutableLiveData<ResponseState<List<Rules>>> = MutableLiveData()
+    private var getRulesLiveData : MutableLiveData<ResponseState<MutableList<Rules>>> = MutableLiveData()
     private var addHistoryLiveData : MutableLiveData<ResponseState<String>> = MutableLiveData()
+    private var getHistoryLiveData : MutableLiveData<ResponseState<List<History>>> = MutableLiveData()
     private var getGejalaChosenLiveData : MutableLiveData<ResponseState<List<Gejala>>> = MutableLiveData()
 
     fun getGejalaObserver() : MutableLiveData<ResponseState<List<Gejala>>> = getGejalaLiveData
-    fun getRulesObserver() : MutableLiveData<ResponseState<List<Rules>>> = getRulesLiveData
+    fun getRulesObserver() : MutableLiveData<ResponseState<MutableList<Rules>>> = getRulesLiveData
     fun addHistoryObserver() : MutableLiveData<ResponseState<String>> = addHistoryLiveData
+    fun getHistoryObserver() : MutableLiveData<ResponseState<List<History>>> = getHistoryLiveData
     fun getGejalaChosenObserver() : MutableLiveData<ResponseState<List<Gejala>>> = getGejalaChosenLiveData
 
     fun getGejala(){
@@ -42,6 +44,13 @@ class DiagnosisViewModel @Inject constructor(
         addHistoryLiveData.value = ResponseState.Loading
         repository.addToHistory(history){
             addHistoryLiveData.value = it
+        }
+    }
+
+    fun getHistoryUser(id: String){
+        getHistoryLiveData.value = ResponseState.Loading
+        repository.getHistory(id){
+            getHistoryLiveData.value = it
         }
     }
 

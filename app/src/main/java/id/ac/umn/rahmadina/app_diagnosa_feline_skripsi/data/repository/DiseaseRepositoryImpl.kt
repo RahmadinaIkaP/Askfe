@@ -6,6 +6,7 @@ import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.model.Gejala
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.model.History
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.model.Penyakit
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.model.Rules
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.Constant.Companion.GEJALA
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.Constant.Companion.HISTORY
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
 
@@ -33,7 +34,7 @@ class DiseaseRepositoryImpl(
     }
 
     override fun showQuestion(response: (ResponseState<List<Gejala>>) -> Unit) {
-        database.collection("gejala").get()
+        database.collection(GEJALA).get()
             .addOnSuccessListener {
                 val symptoms = arrayListOf<Gejala>()
                 for (document in it){
@@ -53,7 +54,7 @@ class DiseaseRepositoryImpl(
 
     override fun getGejalaRules(
         list: ArrayList<String>,
-        response: (ResponseState<List<Rules>>) -> Unit
+        response: (ResponseState<MutableList<Rules>>) -> Unit
     ) {
         database.collection("rules")
             .whereIn("id_gejala", list)
@@ -80,7 +81,7 @@ class DiseaseRepositoryImpl(
         list: ArrayList<String>,
         response: (ResponseState<List<Gejala>>) -> Unit
     ) {
-        database.collection("gejala")
+        database.collection(GEJALA)
             .whereIn("id", list)
             .get()
             .addOnSuccessListener{
@@ -115,4 +116,26 @@ class DiseaseRepositoryImpl(
                 )
             }
     }
+
+    override fun getHistory(idUser: String, response: (ResponseState<List<History>>) -> Unit) {
+        database.collection(HISTORY)
+            .whereEqualTo("idUser", idUser)
+            .get()
+            .addOnSuccessListener{
+                val histories = arrayListOf<History>()
+                for (document in it){
+                    val history = document.toObject(History::class.java)
+                    histories.add(history)
+                }
+                response.invoke(
+                    ResponseState.Success(histories)
+                )
+            }
+            .addOnFailureListener {
+                response.invoke(
+                    ResponseState.Error(it.localizedMessage!!)
+                )
+            }
+    }
+
 }

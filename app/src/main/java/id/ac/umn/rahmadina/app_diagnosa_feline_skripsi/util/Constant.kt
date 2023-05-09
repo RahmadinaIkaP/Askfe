@@ -4,5 +4,6 @@ class Constant {
     companion object{
         const val USER = "user"
         const val HISTORY = "history"
+        const val GEJALA = "gejala"
     }
 }

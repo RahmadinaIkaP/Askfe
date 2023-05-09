@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.util.Date
 
 class ProfileRepositoryImpl(
     private val auth : FirebaseAuth,
@@ -53,7 +54,8 @@ class ProfileRepositoryImpl(
                     "name", name,
                     "gender", gender,
                     "bornDate", ttl,
-                    "imageUrl", img
+                    "imageUrl", img,
+                    "updateAt", Date()
                 )
                 .addOnSuccessListener {
                     response.invoke(ResponseState.Success("Ubah profil berhasil!"))
@@ -90,7 +92,10 @@ class ProfileRepositoryImpl(
     ) {
         auth.currentUser?.let {
             database.collection(USER).document(it.uid)
-                .update("password", password)
+                .update(
+                    "password", password,
+                    "updateAt", Date()
+                )
                 .addOnSuccessListener {
                     response.invoke(ResponseState.Success("berhasil mengubah password di database!"))
                 }
