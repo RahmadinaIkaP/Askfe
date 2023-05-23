@@ -105,7 +105,9 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Hasil"
                 android:textColor="@color/black"
+                android:maxWidth="230dp"
                 android:textSize="12sp"
+                android:textAlignment="textEnd"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tvLblDiagnosis" />
 
@@ -126,13 +128,14 @@
                 android:id="@+id/tvPersentasePenyakit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Persentase"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvLblPersentase" />
+                app:layout_constraintTop_toBottomOf="@+id/tvHasilDiagnosis" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

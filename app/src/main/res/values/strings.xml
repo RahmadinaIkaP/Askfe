@@ -22,6 +22,8 @@
     <string name="jenis_kelamin" translatable="false">Jenis Kelamin</string>
     <string name="tanggal_lahir" translatable="false">Tanggal Lahir</string>
     <string name="konfirmasi_password" translatable="false">Konfirmasi Password</string>
+    <string name="descapp" translatable="false">Askfe adalah sebuah aplikasi yang membantu anda dalam mendiagnosis penyakit feline pada kucing anda. Penyakit yang bisa didiagnosa pada aplikasi yaitu:\n\n1. Feline Panleukopenia Virus (Panleukopenia)\n2.Feline Infectious Peritonitis (FIP)\n3.Feline Calicivirus (Calici)\n4. Feline Viral Rhinotracheitis (FVR)</string>
+    <string name="descpakar"><![CDATA[drh. Rian Rizky Octaviani atau biasa disapa dengan drh. Riri adalah dokter hewan dari klinik hewan drh. Rajanti & Friends yang membantu dalam pembuatan pada aplikasi ini.]]></string>
 
     <string-array name="jenis_kelamin">
         <item>Laki-laki</item>

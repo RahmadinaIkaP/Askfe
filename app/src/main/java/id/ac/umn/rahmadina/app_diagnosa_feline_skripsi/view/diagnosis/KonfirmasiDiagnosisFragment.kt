@@ -1,5 +1,6 @@
 package id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.diagnosis
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentKonfirmasiDiagnosisBinding
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.MainActivity
 
 @AndroidEntryPoint
 class KonfirmasiDiagnosisFragment : Fragment() {
@@ -32,7 +34,9 @@ class KonfirmasiDiagnosisFragment : Fragment() {
             }
 
             btnBackToHome.setOnClickListener {
-                findNavController().navigate(R.id.action_konfirmasiDiagnosisFragment_to_homeFragment)
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
             }
         }
     }

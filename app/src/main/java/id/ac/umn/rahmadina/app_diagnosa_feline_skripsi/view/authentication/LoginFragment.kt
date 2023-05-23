@@ -1,5 +1,6 @@
 package id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.authentication
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.datastore.SharedPref
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentLoginBinding
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.toast
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.MainActivity
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.authentication.viewmodel.AuthViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -86,8 +88,10 @@ class LoginFragment : Fragment() {
                 is ResponseState.Loading -> {Log.d("LoginFragment", "loading...")}
                 is ResponseState.Success -> {
                     Log.d("LoginFragment", response.data[0].toString())
-                    saveSession(response.data[0].id, response.data[0].name, response.data[0].email, response.data[0].password)
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    saveSession(response.data.first().id, response.data.first().name, response.data.first().email, response.data[0].password)
+                    val intent = Intent(activity, MainActivity::class.java)
+                    startActivity(intent)
+                    requireActivity().finish()
                 }
             }
         }

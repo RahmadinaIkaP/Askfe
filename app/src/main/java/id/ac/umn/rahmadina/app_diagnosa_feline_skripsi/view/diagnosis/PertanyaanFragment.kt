@@ -1,5 +1,6 @@
 package id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.diagnosis
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,6 +17,8 @@ import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.model.InputCfUser
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentPertanyaanBinding
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.toast
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.MainActivity
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.authentication.AuthActivity
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.diagnosis.viewmodel.DiagnosisViewModel
 
 @AndroidEntryPoint
@@ -59,7 +62,6 @@ class PertanyaanFragment : Fragment() {
                 is ResponseState.Success -> {
                     binding.progressBar.hide()
                     list = response.data as ArrayList<Gejala>
-                    Log.d("List Size", "list size: ${list.size}")
                     showQuestion(counter)
                 }
             }
@@ -82,7 +84,11 @@ class PertanyaanFragment : Fragment() {
             bundle.putStringArrayList("gejala", listGejala)
 
             toast("Mulai perhitungan")
-            findNavController().navigate(R.id.action_pertanyaanFragment_to_hasilDiagnosisFragment, bundle)
+
+            val intent = Intent(activity, HasilDiagnosisActivity::class.java)
+            intent.putExtras(bundle)
+            startActivity(intent)
+            requireActivity().finish()
 
         }else{
             val gejala = list[idx]
@@ -121,7 +127,6 @@ class PertanyaanFragment : Fragment() {
                 hasil.add(
                     InputCfUser(list[counter-1].id, getCfUserVal(resources.getResourceEntryName(selected)))
                 )
-                Log.d("Counter", "counter: $counter")
             }
         }else{
             showQuestion(++counter)

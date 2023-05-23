@@ -53,7 +53,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:paddingBottom="20dp">
 
             <TextView
                 android:id="@+id/textView3"
@@ -81,7 +82,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Askfe adalah sebuah aplikasi yang membantu anda dalam mendiagnosis penyakit feline pada kucing anda."
+                android:text="@string/descapp"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -119,7 +120,8 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="drh. Rian Rizky Octaviani atau biasa disapa dengan drh. Riri adalah dokter hewan yang sudah berkontribusi pada aplikasi ini."
+                android:justificationMode="inter_word"
+                android:text="@string/descpakar"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 

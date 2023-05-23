@@ -112,7 +112,11 @@ class RegisterFragment : Fragment() {
                 is ResponseState.Success -> {
                     binding.progressBar.hide()
                     toast(response.data)
-                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                    if (findNavController().currentDestination?.id != R.id.loginFragment) {
+                        findNavController().navigate(
+                            RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                        )
+                    }
                 }
             }
         }

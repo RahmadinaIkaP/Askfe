@@ -1,5 +1,6 @@
 package id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.infopenyakit
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +25,7 @@ class DetailInfoPenyakitFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,6 +42,9 @@ class DetailInfoPenyakitFragment : Fragment() {
         binding.webView.apply {
             webViewClient = WebViewClient()
             data.urlArtikel?.let { loadUrl(it) }
+            settings.javaScriptEnabled = true
+            settings.setSupportZoom(true)
+            settings.allowContentAccess
         }
     }
 

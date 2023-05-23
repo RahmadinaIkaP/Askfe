@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
@@ -14,6 +15,8 @@ import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.datastore.SharedPref
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.model.History
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentHistoryBinding
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.ResponseState
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.hide
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.show
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.util.toast
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.diagnosis.viewmodel.DiagnosisViewModel
 
@@ -62,12 +65,22 @@ class HistoryFragment : Fragment(), HistoryAdapter.HistoryInterface {
     }
 
     private fun populateData(data: List<History>) {
-        adapter = HistoryAdapter(this)
-        adapter.setData(data)
+        if (data.isEmpty()){
+            binding.apply {
+                layoutDataKosong.show()
+                rvHistoryDiagnose.hide()
+            }
+        }else{
+            binding.layoutDataKosong.hide()
+            binding.rvHistoryDiagnose.show()
 
-        binding.apply {
-            rvHistoryDiagnose.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            rvHistoryDiagnose.adapter = adapter
+            adapter = HistoryAdapter(this)
+            adapter.setData(data)
+
+            binding.apply {
+                rvHistoryDiagnose.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                rvHistoryDiagnose.adapter = adapter
+            }
         }
     }
 
@@ -77,6 +90,7 @@ class HistoryFragment : Fragment(), HistoryAdapter.HistoryInterface {
     }
 
     override fun onItemClick(history: History) {
-        toast("bisa diklik")
+        val action = HistoryFragmentDirections.actionHistoryFragmentToDetailHistoryFragment(history)
+        findNavController().navigate(action)
     }
 }

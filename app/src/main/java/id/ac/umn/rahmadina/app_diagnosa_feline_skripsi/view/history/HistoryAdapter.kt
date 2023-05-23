@@ -38,6 +38,9 @@ class HistoryAdapter(private val onClick : HistoryInterface) : RecyclerView.Adap
                 tvTglKonsul.text = konsulDate
                 tvHasilDiagnosis.text = history.hdPenyakit
                 tvPersentasePenyakit.text = "${history.hdCfPersen}%"
+                itemView.setOnClickListener {
+                    onClick.onItemClick(history)
+                }
             }
         }
     }

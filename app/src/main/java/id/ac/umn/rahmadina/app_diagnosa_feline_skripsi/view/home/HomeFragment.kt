@@ -1,6 +1,7 @@
 package id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.R
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.data.datastore.SharedPref
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.databinding.FragmentHomeBinding
 import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.authentication.viewmodel.AuthViewModel
+import id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.diagnosis.KonsultasiActivity
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -39,7 +41,8 @@ class HomeFragment : Fragment() {
 
         binding.apply {
             btnMulaiDiagnosa.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_konfirmasiDiagnosisFragment)
+                val intent = Intent(activity, KonsultasiActivity::class.java)
+                startActivity(intent)
             }
 
             btnPenyakitFeline.setOnClickListener {

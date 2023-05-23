@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_konsultasi"
+    app:startDestination="@id/konfirmasiDiagnosisFragment">
+    <fragment
+        android:id="@+id/konfirmasiDiagnosisFragment"
+        android:name="id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.diagnosis.KonfirmasiDiagnosisFragment"
+        android:label="fragment_konfirmasi_diagnosis"
+        tools:layout="@layout/fragment_konfirmasi_diagnosis">
+        <action
+            android:id="@+id/action_konfirmasiDiagnosisFragment_to_formCatNameFragment"
+            app:destination="@id/formCatNameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formCatNameFragment"
+        android:name="id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.diagnosis.FormCatNameFragment"
+        android:label="fragment_form_cat_name"
+        tools:layout="@layout/fragment_form_cat_name">
+        <action
+            android:id="@+id/action_formCatNameFragment_to_pertanyaanFragment"
+            app:destination="@id/pertanyaanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pertanyaanFragment"
+        android:name="id.ac.umn.rahmadina.app_diagnosa_feline_skripsi.view.diagnosis.PertanyaanFragment"
+        android:label="fragment_pertanyaan"
+        tools:layout="@layout/fragment_pertanyaan" />
+</navigation>
