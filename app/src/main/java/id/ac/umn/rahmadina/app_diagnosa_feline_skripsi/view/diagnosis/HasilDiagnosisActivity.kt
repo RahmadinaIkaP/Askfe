@@ -71,10 +71,10 @@ class HasilDiagnosisActivity : AppCompatActivity() {
             vmDiagnosis.getRulesObserver().observe(this){ response ->
                 when(response){
                     is ResponseState.Error -> {
-
+                        Log.e("HasilDiagnosisFragment", response.msg)
                     }
                     is ResponseState.Loading -> {
-
+                        Log.d("HasilDiagnosisFragment", "loading data")
                     }
                     is ResponseState.Success -> {
                         Log.d("HasilDiagnosisFragment-DariUser", hasil.toString())
